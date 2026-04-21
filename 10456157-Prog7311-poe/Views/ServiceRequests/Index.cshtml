@@ -1,0 +1,24 @@
+﻿@model IEnumerable<_10456157_Prog7311_poe.Models.ServiceRequest>
+
+<h2>Service Requests</h2>
+
+<a asp-action="Create">Create Request</a>
+
+<table>
+    <tr>
+        <th>Contract</th>
+        <th>Description</th>
+        <th>Cost</th>
+        <th>Status</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Contract.ContractId</td>
+            <td>@item.Description</td>
+            <td>@item.Cost</td>
+            <td>@item.Status</td>
+        </tr>
+    }
+</table>

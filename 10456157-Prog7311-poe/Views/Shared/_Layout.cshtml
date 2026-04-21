@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>GLMS System</title>
+</head>
+<body>
+
+    <h1>Global Logistics Management System</h1>
+
+    <nav>
+        <a asp-controller="Client" asp-action="Index">Clients</a> |
+        <a asp-controller="Contracts" asp-action="Index">Contracts</a> |
+        <a asp-controller="ServiceRequests" asp-action="Index">Service Requests</a>
+    </nav>
+
+    <hr />
+
+    <div>
+        @RenderBody()
+    </div>
+
+</body>
+</html>

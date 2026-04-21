@@ -1,0 +1,29 @@
+﻿@model IEnumerable<_10456157_Prog7311_poe.Models.Contract>
+
+<h2>Contracts</h2>
+
+<a asp-action="Create">Create Contract</a>
+
+<table>
+    <tr>
+        <th>Client</th>
+        <th>Status</th>
+        <th>Service Level</th>
+        <th>File</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Client.Name</td>
+            <td>@item.Status</td>
+            <td>@item.ServiceLevel</td>
+            <td>
+                @if (item.FilePath != null)
+                {
+                    <a asp-action="Download" asp-route-filePath="@item.FilePath">Download</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

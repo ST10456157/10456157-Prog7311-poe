@@ -1,0 +1,24 @@
+﻿@model _10456157_Prog7311_poe.Models.ServiceRequest
+
+<h2>Create Service Request</h2>
+
+<form asp-action="Create">
+
+    <label>Contract</label>
+    <select asp-for="ContractId" asp-items="ViewBag.ContractId"></select>
+
+    <label>Description</label>
+    <input asp-for="Description" />
+
+    <label>Cost</label>
+    <input asp-for="Cost" />
+
+    <label>Status</label>
+    <select asp-for="Status">
+        <option>Pending</option>
+        <option>Completed</option>
+    </select>
+
+    <button type="submit">Submit</button>
+
+</form>
