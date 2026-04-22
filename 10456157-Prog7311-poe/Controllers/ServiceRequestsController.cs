@@ -18,19 +18,21 @@ namespace _10456157_Prog7311_poe.Controllers
             _service = service;
         }
 
-        // ✅ ADD THIS
+        
         public async Task<IActionResult> Index()
         {
             var requests = _context.ServiceRequests.Include(s => s.Contract);
             return View(await requests.ToListAsync());
         }
 
+        
         public IActionResult Create()
         {
             ViewData["ContractId"] = new SelectList(_context.Contracts, "ContractId", "Status");
             return View();
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Create(ServiceRequest serviceRequest)
         {

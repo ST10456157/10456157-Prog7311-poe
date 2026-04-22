@@ -2,7 +2,9 @@
 
 <h2>Create Client</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="All"></div>
     <label>Name</label>
     <input asp-for="Name" />
 
@@ -13,4 +15,5 @@
     <input asp-for="Region" />
 
     <button type="submit">Save</button>
+
 </form>

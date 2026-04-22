@@ -6,6 +6,7 @@
 
 <table>
     <tr>
+        <th>ClientID</th>
         <th>Name</th>
         <th>Contact</th>
         <th>Region</th>
@@ -14,6 +15,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>@item.ClientId</td>
             <td>@item.Name</td>
             <td>@item.ContactDetails</td>
             <td>@item.Region</td>

@@ -29,43 +29,51 @@ namespace _10456157_Prog7311_poe.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Contract contract, IFormFile file)
         {
-            // FILE UPLOAD
-            if (file != null)
+            
+            if (contract.ClientId <= 0)
             {
-                if (Path.GetExtension(file.FileName).ToLower() != ".pdf")
-                {
-                    ModelState.AddModelError("", "Only PDF files allowed");
-                    return View(contract);
-                }
-
-                var fileName = Guid.NewGuid() + ".pdf";
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files", fileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                contract.FilePath = "/files/" + fileName;
+                ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Name");
+                ModelState.AddModelError("", "Please select a client.");
+                return View(contract);
             }
 
-            if (ModelState.IsValid)
+            
+            if (file == null || file.Length == 0)
             {
-                _context.Add(contract);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Name");
+                ModelState.AddModelError("", "Please upload a PDF file.");
+                return View(contract);
             }
 
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Name", contract.ClientId);
-            return View(contract);
+            
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files");
+
+            Directory.CreateDirectory(folder);
+
+            var path = Path.Combine(folder, fileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+           
+            contract.FilePath = "/files/" + fileName;
+
+            
+            _context.Contracts.Add(contract);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
-        
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();

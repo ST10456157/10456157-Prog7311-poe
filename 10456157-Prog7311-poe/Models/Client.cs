@@ -9,6 +9,6 @@ namespace _10456157_Prog7311_poe.Models
         public string ContactDetails { get; set; }
         public string Region { get; set; }
 
-        public ICollection<Contract> Contracts { get; set; }
+        public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
     }
 }

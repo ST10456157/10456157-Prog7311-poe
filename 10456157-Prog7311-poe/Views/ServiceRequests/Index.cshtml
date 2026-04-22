@@ -6,6 +6,7 @@
 
 <table>
     <tr>
+        <th>ServiceRequestId</th>
         <th>Contract</th>
         <th>Description</th>
         <th>Cost</th>
@@ -15,6 +16,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>@item.ServiceRequestId</td>
             <td>@item.Contract.ContractId</td>
             <td>@item.Description</td>
             <td>@item.Cost</td>

@@ -5,7 +5,7 @@
         public int ServiceRequestId { get; set; }
 
         public int ContractId { get; set; }
-        public Contract Contract { get; set; }
+        public Contract Contract { get; set; }   // ❌ causes validation error
 
         public string Description { get; set; }
         public double Cost { get; set; }
